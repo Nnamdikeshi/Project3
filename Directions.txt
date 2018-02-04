@@ -1,0 +1,35 @@
+Objectives:
+
+Database design
+Practice using SQLite with Python
+Task:
+
+Create an application to manage merchandise sales for a tour.  For example, for a sports team selling jerseys and hats; a musician selling t-shirts and vinyl; performing artists selling posters and t-shirts, renaissance festival selling beer mugs and hats...
+
+Your application should use a database to persistently store data.  
+
+You can build this as a command line app.  OR create a simple Tkinter GUI for your application; https://likegeeks.com/python-gui-examples-tkinter-tutorial/ OR build a web app, perhaps with Flask. http://flask.pocoo.org/
+
+For example, if you create a sports team merchandise app, e.g. for a soccer team. Your app should manage the teams season’s merchandise sale. You will need to store the quantity of each merchandise item sold at each event. E.g. For the June 14th event at the Midway Stadium, 42 posters were sold. 
+
+You might need one table for data about each games/events - date, venue etc. 
+And another table to manage merchandise items (e.g. jerseys, hats, posters…)
+And another table to store records of sales of each item from each game.  E.g. at game id=4, merchandiseId=6, 42 were sold. 
+You should use foreign key relationships to help ensure that (for example) your user can't create a record of a sale for a game that doesn't exist. 
+
+You should be able to enter data about the products that are sold (name, price...)  and create a table of items for sale. You should also be able to create a table of game dates/locations. And, you'll need to add sales data for each game date/location.
+
+Your program should be able to do some simple analysis of your choice - for example - how many jerseys were sold in total? At which game did you sell the most jerseys? What item do you sell least of? Aggregate queries should be useful. 
+
+In SQLite, foreign keys will be created, but won't be enforced. To make SQLite respect your foreign key relationships, configure your DB as described here: https://sqlite.org/foreignkeys.html
+
+If you build the application for a musician, festival tour, convention or other customer, adapt it to suit your customer.
+
+As you build your application, remember to write functions, and create modular, focused classes.   Use parameterized queries with your database.
+
+Comment your code!
+
+To submit: 
+
+Zip all of the files in your project and upload to the Project 3 dropbox
+Push your project code to GitHub and submit the URL to the Project 3 dropbox
