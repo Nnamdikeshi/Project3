@@ -21,7 +21,7 @@ from tkinter import messageboximport sqlite3import timeimport datetime
           self.box1_value = StringVar()
           self.deletename=StringVar()
                     self.master=master          self.master.geometry('900x450+100+200')          self.master.title('*Buy Merch*')
-                    self.label2=Label(self.master,text='Welcome to the Vikings Offseason SuperBowl Sale!!',fg='red').grid(row=0,column=0)          self.label2=Label(self.master,text='Please enter Item #',fg='black').grid(row=3,column=0)          self.label2=Label(self.master,text='Please enter your name',fg='black').grid(row=4,column=0)
+                    self.label2=Label(self.master,text='Welcome to the Vikings Offseason SuperBowl Sale!!',fg='purple').grid(row=0,column=0)          self.label2=Label(self.master,text='Please enter Item #',fg='black').grid(row=3,column=0)          self.label2=Label(self.master,text='Please enter your name',fg='black').grid(row=4,column=0)
           self.label2=Label(self.master,text='Please select color',fg='black').grid(row=5,column=0)
           self.label2=Label(self.master,text='Please select a location',fg='black').grid(row=6,column=0)
           self.label2=Label(self.master,text='Please enter buy quantity',fg='black').grid(row=7,column=0)
@@ -40,11 +40,11 @@ from tkinter import messageboximport sqlite3import timeimport datetime
           self.quantityLabel.grid(row=9, column=5)
           self.dateLabel = Label(self.master, text="Date", width=10)
           self.dateLabel.grid(row=9, column=6)           
-          self.hatLabel = Label(self.master, text="*Hat W/Logo*\nItem#: '1' '2' or '3'")
+          self.hatLabel = Label(self.master, text="*Hat W/Logo*\nItem#: '1' '2' or '3'",fg='yellow',bg='purple')
           self.hatLabel.grid(row=5, column=2) 
-          self.shirtLabel = Label(self.master, text="*Shirt with viking Logo*\nItem#: '4' '5' or '6'")
+          self.shirtLabel = Label(self.master, text="*Shirt with viking Logo*\nItem#: '4' '5' or '6'",fg='yellow',bg='purple')
           self.shirtLabel.grid(row=6, column=2) 
-          self.shortsLabel = Label(self.master, text="*Shorts with Viking Logo*\nItem#: '7' '8' '9'")
+          self.shortsLabel = Label(self.master, text="*Shorts with Viking Logo*\nItem#: '7' '8' '9'",fg='yellow',bg='purple')
           self.shortsLabel.grid(row=7, column=2) 
                     self.merchname=Entry(self.master,textvariable=self.idnum).grid(row=3,column=1)          self.myname=Entry(self.master,textvariable=self.buyname).grid(row=4,column=1)
           self.garbname=Entry(self.master,textvariable=self.deletename).grid(row=4,column=2)
@@ -61,9 +61,8 @@ from tkinter import messageboximport sqlite3import timeimport datetime
           
           
           self.merchQuan=Entry(self.master,textvariable=self.merchquantity).grid(row=7,column=1)  
-                    self.button6=Button(self.master,text="Buy",fg='red',command=self.merchbuyer).grid(row=3,column=2)          self.button7=Button(self.master,text="Exit",fg='red',bg='black',command=self.exit).grid(row=3,column=3)
-          self.button8=Button(self.master,text="DELETE",fg='red',bg='black',command=self.deleteRecords).grid(row=4,column=3)
-          
+                    self.button6=Button(self.master,text="Buy",fg='green',command=self.merchbuyer).grid(row=3,column=2)          self.button7=Button(self.master,text="Exit",fg='red',bg='black',command=self.exit).grid(row=3,column=3)
+          self.button8=Button(self.master,text="DELETE",fg='red',command=self.deleteRecords).grid(row=4,column=3)
           
           self.connection = sqlite3.connect('vikingsdatabase.db')
           self.cur = self.connection.cursor()
@@ -76,14 +75,14 @@ from tkinter import messageboximport sqlite3import timeimport datetime
     def showallweekOneMerch(self):
           
          data = self.readfromdatabase()
-          
+
          for index, dat in enumerate(data):
-             Label(self.master, text=dat[0]).grid(row=index+10, column=0)
-             Label(self.master, text=dat[1]).grid(row=index+10, column=1)
-             Label(self.master, text=dat[2]).grid(row=index+10, column=2)
-             Label(self.master, text=dat[3]).grid(row=index+10, column=3)
-             Label(self.master, text=dat[4]).grid(row=index+10, column=4)
-             Label(self.master, text=dat[5]).grid(row=index+10, column=5)             Label(self.master, text=dat[6]).grid(row=index+10, column=6)
+             Label(self.master, text=dat[0],fg='purple').grid(row=index+10, column=0)
+             Label(self.master, text=dat[1],fg='purple').grid(row=index+10, column=1)
+             Label(self.master, text=dat[2],fg='purple').grid(row=index+10, column=2)
+             Label(self.master, text=dat[3],fg='purple').grid(row=index+10, column=3)
+             Label(self.master, text=dat[4],fg='purple').grid(row=index+10, column=4)
+             Label(self.master, text=dat[5],fg='purple').grid(row=index+10, column=5)             Label(self.master, text=dat[6],fg='purple').grid(row=index+10, column=6)
                  def merchbuyer(self):                     
           # Brings us back to merch buyer frame          self.master.update()
           self.master.deiconify()
@@ -172,7 +171,7 @@ from tkinter import messageboximport sqlite3import timeimport datetime
              self.label1=Label(self.master,text='Your Purchase was successfull ' + custname,fg='green').grid(row=8,column=0)
                        except ValueError:
              # Error message for ValueError
-             messagebox.showerror('Error','Please enter numbers ie: "1", "2", or "3" in their corosponding boxes!')
+             messagebox.showerror('Error','Please enter numbers ie: "1", "2", or "3" in their corrosponding boxes!')
              #self.merchname.selection_clear()
              #self.merchname.focus()
              self.label1=Label(self.master,text='Your Purchase was unsuccessfull. Sorry ' + custname,fg='red').grid(row=8,column=0)
@@ -183,6 +182,7 @@ from tkinter import messageboximport sqlite3import timeimport datetime
           conn.commit()
           c.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME='sold'")
           conn.commit()
+          
           self.showallweekOneMerch()
           return
               def exit(self):          #Exit protocol for the exit button. This part is completely done.#          self.master.destroy()
